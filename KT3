@@ -1,0 +1,107 @@
+package Sanakirja;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.beans.ExceptionListener;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
+
+
+public class Sanakirja {
+	@SuppressWarnings("rawtypes")
+	public static void main (String[] args) {
+		
+		// Sanakirjan luonti - Ensimmäinen Avain - Seuraava Arvo
+		
+	Map<String, String> kirja = new HashMap<>();	
+	kirja.put("Kissa", "Cat");
+	kirja.put("Koira", "Dog");
+	kirja.put("Hevonen", "Horse");
+	kirja.put("Auto", "Car");
+	
+
+
+    
+	
+
+	// Sanakirjan sisällön tulostaminen 
+	System.out.println("Sanakirjan sisältö: ");
+	for (String sisältö: kirja.keySet()){ // Palauttaa kartan sisällön
+
+        String key =sisältö.toString();
+        String value = kirja.get(sisältö).toString(); 
+        System.out.println(key + " " + value);  
+	}
+        
+        // Yksittäisten kysyminen
+        
+        Scanner lukija = new Scanner(System.in);
+        String input = null;
+        
+        do {
+			System.out.println("\n Minkä sanan haluat kääntää?\n Paina tyhjää poistuaksesi");
+		
+			input = lukija.nextLine();
+		
+			
+			
+			// Syötteen ottaminen ja vertaaminen karttaan
+			
+			if ( kirja.containsKey(input) ) {
+				String määritelmä = kirja.get(input);
+				System.out.println("\n Käännös: \n" + määritelmä);
+			}
+			else {
+				System.out.println("Sanan\t" + input + "\tkäännös on tuntematon");
+			}
+	}while (! input.equalsIgnoreCase(null) ); // Poistuminen, vertaa Null -> Null
+	
+	
+	// Sanojen lisääminen sanakirjaan
+        
+       
+       
+    	// Lisäys
+	
+        System.out.println("Haluatko lisätä sanoja sanakirjaan?  kyllä/ei: ");
+        String valinta = lukija.nextLine();
+ 
+        if (valinta.equalsIgnoreCase("kyllä")) {
+
+            System.out.println("Sana alkukielellä? ");
+            String key = lukija.nextLine();
+            System.out.println("Sana käännettynä?: ");
+            String value = lukija.nextLine();
+            kirja.put(key, value);
+        } else if (valinta.equalsIgnoreCase("ei")) {
+        }
+
+
+        
+     // Seralisointi XML tiedostoon - JavaBeans
+        
+        // Hashmap - String
+	String kirjaToString = hashtoString(kirja);
+	Map kasattuKartta = (Map) stringtoHash(kirjaToString);
+	System.out.println("Hashmap -> XML: \n" + kirjaToString + "\nXML to map:\n" + kasattuKartta);
+	}
+
+    public static String hashtoString(Object kirja) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        XMLEncoder xmlEncoder = new XMLEncoder(bos);
+        xmlEncoder.writeObject(kirja);
+        xmlEncoder.close();
+        return bos.toString();
+    }
+
+    public static Object stringtoHash(String string) {
+        @SuppressWarnings("resource")
+		XMLDecoder xmlDecoder = new XMLDecoder(new ByteArrayInputStream(string.getBytes()));
+        return xmlDecoder.readObject();
+        
+}}
+
