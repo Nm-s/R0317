@@ -20,12 +20,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 
-public class K‰yttˆGUI extends javax.swing.JFrame {
+public class K√§ytt√∂GUI extends javax.swing.JFrame {
 
    
 	private static final long serialVersionUID = 8339804282211215864L;
 
-    public K‰yttˆGUI() {
+    public K√§ytt√∂GUI() {
         initComponents();
         Tiedot_Jtableen();
     }
@@ -33,28 +33,28 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     String ImgPath = null;
     int pos = 0;
     
-      // Yhdist‰minen tietokantaan
+      // Yhdist√§minen tietokantaan
     
     public Connection getConnection()
     {
         Connection con = null;
         
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/products_db2","root","");
+            con = DriverManager.getConnection("jdbc:mysql:sql7.freemysqlhosting.net","sql7268384","RizJUWdqkj");
             return con;
         } catch (SQLException ex) {
-            Logger.getLogger(K‰yttˆGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
     
-    // Syˆtteiden tarkistus
+    // Sy√∂tteiden tarkistus
     public boolean tarkistusInput()
     {
         if(
-              txt_tekij‰nimi.getText() == null // name
-           || txt_julkaisuvuosi.getText() == null // id
-           || txt_teoksennimi.getText() == null // price
+              txt_tekij√§nimi.getText() == null 
+           || txt_julkaisuvuosi.getText() == null 
+           || txt_teoksennimi.getText() == null 
 
           ){
             return false;
@@ -108,12 +108,12 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
             
             while(rs.next())
             {
-                tiedot = new Tiedot(rs.getInt("julkaisuvuosi"),rs.getString("tekij‰nimi"),rs.getString("teoksennimi"),rs.getBytes("image"));
+                tiedot = new Tiedot(rs.getInt("julkaisuvuosi"),rs.getString("tekij√§nimi"),rs.getString("teoksennimi"),rs.getBytes("image"));
                 tiedotLista.add(tiedot);
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(K‰yttˆGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return tiedotLista; 
@@ -121,7 +121,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     }
     
     
-    //      T‰yttˆ
+    //      T√§ytt√∂
     
     public void Tiedot_Jtableen()
     {
@@ -132,7 +132,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         for(int i = 0; i < list.size(); i++)
         {
             row[0] = list.get(i).getJulkaisuvuosi();
-            row[1] = list.get(i).getTekij‰nimi();
+            row[1] = list.get(i).getTekij√§nimi();
             row[2] = list.get(i).getTeoksennimi();
           
             
@@ -141,11 +141,11 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     
     }
     
-    // Data syˆtteisiin
-    public void N‰yt‰Tieto(int index)
+    // Data sy√∂tteisiin
+    public void N√§yt√§Tieto(int index)
     {
     	txt_julkaisuvuosi.setText(Integer.toString(getTiedotLista().get(index).getJulkaisuvuosi()));
-            txt_tekij‰nimi.setText(getTiedotLista().get(index).getTekij‰nimi());
+            txt_tekij√§nimi.setText(getTiedotLista().get(index).getTekij√§nimi());
             txt_teoksennimi.setText(getTiedotLista().get(index).getTeoksennimi());
             
         lbl_image.setIcon(ResizeImage(null, getTiedotLista().get(index).getImage()));
@@ -169,7 +169,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_tekij‰nimi = new javax.swing.JTextField();
+        txt_tekij√§nimi = new javax.swing.JTextField();
         txt_julkaisuvuosi = new javax.swing.JTextField();
         txt_teoksennimi = new javax.swing.JTextField();
         lbl_image = new javax.swing.JLabel();
@@ -177,8 +177,8 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         JTable_Tiedot = new javax.swing.JTable();
         Btn_valinta_Kuva = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        Btn_Lis‰‰ = new javax.swing.JButton();
-        Btn_Ensimm‰inen = new javax.swing.JButton();
+        Btn_Lis√§√§ = new javax.swing.JButton();
+        Btn_Ensimm√§inen = new javax.swing.JButton();
         Btn_Edellinen = new javax.swing.JButton();
         Btn_Last = new javax.swing.JButton();
         Btn_Seuraava = new javax.swing.JButton();
@@ -191,7 +191,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         jLabel1.setText("Julkaisuvuosi:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Tekij‰nnimi:");
+        jLabel2.setText("Tekij√§nnimi:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Teoksennimi:");
@@ -199,8 +199,8 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Image:");
 
-        txt_tekij‰nimi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txt_tekij‰nimi.setPreferredSize(new java.awt.Dimension(59, 50));
+        txt_tekij√§nimi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_tekij√§nimi.setPreferredSize(new java.awt.Dimension(59, 50));
 
         txt_julkaisuvuosi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_julkaisuvuosi.setEnabled(false);
@@ -218,7 +218,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Julkaisuvuosi", "Tekij‰nnimi", "Teoksennimi"
+                "Julkaisuvuosi", "Tekij√§nnimi", "Teoksennimi"
             }
         ));
         JTable_Tiedot.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,8 +237,8 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/Renew.png")));
-        jButton2.setText("P‰ivit‰");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/Renew.png")));
+        jButton2.setText("P√§ivit√§");
         jButton2.setIconTextGap(15);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,28 +247,28 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         });
 
 
-        Btn_Lis‰‰.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_Lis‰‰.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/add.png"))); // NOI18N
-        Btn_Lis‰‰.setText("Lis‰‰");
-        Btn_Lis‰‰.setIconTextGap(15);
-        Btn_Lis‰‰.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Lis√§√§.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_Lis√§√§.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/add.png"))); // NOI18N
+        Btn_Lis√§√§.setText("Lis√§√§");
+        Btn_Lis√§√§.setIconTextGap(15);
+        Btn_Lis√§√§.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Btn_Lis‰‰ActionPerformed(evt);
+            	Btn_Lis√§√§ActionPerformed(evt);
             }
         });
 
-        Btn_Ensimm‰inen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_Ensimm‰inen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/first.png"))); // NOI18N
-        Btn_Ensimm‰inen.setText("First");
-        Btn_Ensimm‰inen.setIconTextGap(15);
-        Btn_Ensimm‰inen.addActionListener(new java.awt.event.ActionListener() {
+        Btn_Ensimm√§inen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_Ensimm√§inen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/first.png"))); // NOI18N
+        Btn_Ensimm√§inen.setText("First");
+        Btn_Ensimm√§inen.setIconTextGap(15);
+        Btn_Ensimm√§inen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	Btn_Ensimm‰inenActionPerformed(evt);
+            	Btn_Ensimm√§inenActionPerformed(evt);
             }
         });
 
         Btn_Edellinen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_Edellinen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/previous.png"))); // NOI18N
+        Btn_Edellinen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/previous.png"))); // NOI18N
         Btn_Edellinen.setText("Edellinen");
         Btn_Edellinen.setIconTextGap(15);
         Btn_Edellinen.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +278,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         });
 
         Btn_Last.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_Last.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/last.png"))); // NOI18N
+        Btn_Last.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/last.png"))); // NOI18N
         Btn_Last.setText("Last");
         Btn_Last.setIconTextGap(15);
         Btn_Last.addActionListener(new java.awt.event.ActionListener() {
@@ -288,7 +288,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         });
 
         Btn_Seuraava.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Btn_Seuraava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s‰l‰t/icons/next.png"))); // NOI18N
+        Btn_Seuraava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/s√§l√§t/icons/next.png"))); // NOI18N
         Btn_Seuraava.setText("Seuraava");
         Btn_Seuraava.setIconTextGap(15);
         Btn_Seuraava.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +313,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Btn_valinta_Kuva, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                     .addComponent(txt_julkaisuvuosi, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_tekij‰nimi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_tekij√§nimi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_teoksennimi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,11 +321,11 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Btn_Lis‰‰)
+                .addComponent(Btn_Lis√§√§)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Btn_Ensimm‰inen)
+                .addComponent(Btn_Ensimm√§inen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Btn_Seuraava)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -345,7 +345,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_tekij‰nimi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_tekij√§nimi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -363,10 +363,10 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_Lis‰‰, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Lis√§√§, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Btn_Ensimm‰inen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_Ensimm√§inen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Seuraava, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Edellinen, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_Last, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -408,18 +408,17 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Btn_valinta_KuvaActionPerformed
 
-    // Button Insert Image Into MySQL Database
-    // 1 - Check If The imgPath Is Not And The Inputs
-    // 2 - Insert The Data
-    private void Btn_Lis‰‰ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Lis‰‰ActionPerformed
+    // Kuva / SQL
+  
+    private void Btn_Lis√§√§ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Lis√§√§ActionPerformed
         
         if(tarkistusInput() && ImgPath != null)
         {
             try {
                  Connection con = getConnection();
-                PreparedStatement ps = con.prepareStatement("INSERT INTO products(name,price,add_date,image)"
+                PreparedStatement ps = con.prepareStatement("INSERT INTO products(teoksennimi,tekij√§nimi,julkaisuvuosi,image)"
                         + "values(?,?,?,?) ");
-                ps.setString(1, txt_tekij‰nimi.getText());
+                ps.setString(1, txt_tekij√§nimi.getText());
                 ps.setString(2, txt_teoksennimi.getText());
                 ps.setString(3, txt_julkaisuvuosi.getText());
                
@@ -428,25 +427,24 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                 ps.setBlob(4, img);
                 Tiedot_Jtableen();
                 
-                JOptionPane.showMessageDialog(null, "Data Inserted");
+                JOptionPane.showMessageDialog(null, "Tiedot Lis√§tty");
             } catch (Exception ex) {
                  JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }else{
-            JOptionPane.showMessageDialog(null, "One Or More Field Are Empty");
+            JOptionPane.showMessageDialog(null, "Virhe");
         }
         
-        System.out.println("Tekij‰nnimi => "+txt_tekij‰nimi.getText());
+        System.out.println("Tekij√§nnimi => "+txt_tekij√§nimi.getText());
         System.out.println("Teoksennimi => "+txt_teoksennimi.getText());
         System.out.println("Julkaisuvuosi => "+txt_julkaisuvuosi.getText());
         System.out.println("Image => "+ImgPath);
-    }//GEN-LAST:event_Btn_Lis‰‰ActionPerformed
+    }//GEN-LAST:event_Btn_Lis√§√§ActionPerformed
 
-    // Button Update Image From MySQL Database
-    // 1 - Check If Inputs Is Not Null 
-    //     If The imgPath Is Not Null Update Also The Image
-    //     else don't update the Image
-    // 2 - Update The Data
+    
+    // Sy√∂tteen tarkistus
+ 
+    // Datan p√§ivitys
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
         if(tarkistusInput() && txt_julkaisuvuosi.getText() != null)
@@ -455,17 +453,17 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
             PreparedStatement ps = null;
             Connection con = getConnection();
             
-            // Tietojen lis‰‰minen
+            // Tietojen lis√§√§minen
             
                 try{
                 InputStream img = new FileInputStream(new File(ImgPath));
                 
-                 UpdateQuery = "P‰ivit‰ tiedot aseta tekij‰nnimi = ?, teoksennimi = ?, julkaisuvuosi = ?, kuva = ?";
+                 UpdateQuery = "P√§ivit√§ tiedot aseta tekij√§nnimi = ?, teoksennimi = ?, julkaisuvuosi = ?, kuva = ?";
                           
                  
                   ps = con.prepareStatement(UpdateQuery);
                     
-                    ps.setString(1, txt_tekij‰nimi.getText());
+                    ps.setString(1, txt_tekij√§nimi.getText());
                     ps.setString(2, txt_teoksennimi.getText());
                     ps.setInt(3, Integer.parseInt(txt_julkaisuvuosi.getText()));
                     ps.setBlob(4, img);
@@ -487,7 +485,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     //GEN-LAST:event_jButton2ActionPerformed
 
     // Tietokannasta tiedon poistaminen
-    
+    ///
     
     // JTable Mouse Clicked
     // Display The Selected Row Data Into JTextFields
@@ -495,22 +493,22 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     private void JTable_TiedotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTable_TiedotMouseClicked
         
         int index = JTable_Tiedot.getSelectedRow();
-        N‰yt‰Tieto(index);
+        N√§yt√§Tieto(index);
         
     }//GEN-LAST:event_JTable_TiedotMouseClicked
 
     // Button First Show The First Record
-    private void Btn_Ensimm‰inenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ensimm‰inenActionPerformed
+    private void Btn_Ensimm√§inenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Ensimm√§inenActionPerformed
        pos = 0;
-       N‰yt‰Tieto(pos);
-    }//GEN-LAST:event_Btn_Ensimm‰inenActionPerformed
+       N√§yt√§Tieto(pos);
+    }//GEN-LAST:event_Btn_Ensimm√§inenActionPerformed
     // Button Last Show The Last Record 
     private void Btn_LastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_LastActionPerformed
        pos = getTiedotLista().size()-1;
-       N‰yt‰Tieto(pos);
+       N√§yt√§Tieto(pos);
     }//GEN-LAST:event_Btn_LastActionPerformed
     
-  // Seuraavan n‰ytt‰minen
+  // Seuraavan n√§ytt√§minen
     
     private void Btn_SeuraavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SeuraavaActionPerformed
        
@@ -521,7 +519,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
             pos = getTiedotLista().size()-1;
         }
         
-        N‰yt‰Tieto(pos);
+        N√§yt√§Tieto(pos);
         
     }//GEN-LAST:event_Btn_SeuraavaActionPerformed
   // Button Previous Show The Previous Record
@@ -534,7 +532,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
             pos = 0;
         }
         
-        N‰yt‰Tieto(pos);
+        N√§yt√§Tieto(pos);
         
     }//GEN-LAST:event_Btn_EdellinenActionPerformed
 
@@ -555,28 +553,28 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(K‰yttˆGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(K‰yttˆGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(K‰yttˆGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(K‰yttˆGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(K√§ytt√∂GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new K‰yttˆGUI().setVisible(true);
+                new K√§ytt√∂GUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_valinta_Kuva;
-    private javax.swing.JButton Btn_Ensimm‰inen;
-    private javax.swing.JButton Btn_Lis‰‰;
+    private javax.swing.JButton Btn_Ensimm√§inen;
+    private javax.swing.JButton Btn_Lis√§√§;
     private javax.swing.JButton Btn_Last;
     private javax.swing.JButton Btn_Seuraava;
     private javax.swing.JButton Btn_Edellinen;
@@ -592,7 +590,7 @@ public class K‰yttˆGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_image;
     private javax.swing.JTextField txt_julkaisuvuosi;
-    private javax.swing.JTextField txt_tekij‰nimi;
+    private javax.swing.JTextField txt_tekij√§nimi;
     private javax.swing.JTextField txt_teoksennimi;
     // End of variables declaration//GEN-END:variables
 }
